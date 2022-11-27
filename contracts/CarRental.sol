@@ -50,4 +50,15 @@ contract CarRental {
 
         return true;
     }
+
+    // with this function the customer can see more details about the car that he/she inserted the id.
+    function getCarInfo(uint carID) public view returns (uint, string memory, address, address, uint, string memory, bool){
+
+        // again making sure the user inserts a valid carID.
+        require(carID >= 0 && carID < getNumberOfCars());
+
+        //find and assing car 
+        CarMaking.Car memory chosenCar = cars[carID];
+        return (chosenCar.carID, chosenCar.model, chosenCar.owner, chosenCar.customer, chosenCar.year, chosenCar.carLicense, chosenCar.isAvailable);
+    } 
 }
