@@ -18,7 +18,7 @@
 	},
 	"settings": {
 		"compilationTarget": {
-			"contracts/Car.sol": "Car"
+			"contracts/CarMaking.sol": "CarMaking"
 		},
 		"evmVersion": "london",
 		"libraries": {},
@@ -32,11 +32,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"contracts/Car.sol": {
-			"keccak256": "0x9c5b8868676b46be157295d987a2be79209139ee49175ed4501e7a3d41d5921d",
+		"contracts/CarMaking.sol": {
+			"keccak256": "0x9455a0524c94d3acc22816d78c158819dde5def2fc961196665bc88faab75f08",
+			"license": "MIT",
 			"urls": [
-				"bzz-raw://382e2de0c180acd1b422c631dfbcebcb9aeb1410bf612a4eba5dcd8a2544ece3",
-				"dweb:/ipfs/QmcpdLsWHmUvoKY6Py5n6FDAMpD5vJn7gUuqXA6djHPjdQ"
+				"bzz-raw://fa5121169cc63a90c50534fc81bb6142bee59b80ea068df96bd9080d9956ef65",
+				"dweb:/ipfs/QmSbvo8Tgw2tmQmgqmFtZVuHPpxwFbjgDUnw6ZkoX6v67p"
 			]
 		}
 	},
