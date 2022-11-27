@@ -4,21 +4,26 @@ import {CarMaking} from "./CarMaking.sol";
 
 contract CarRental {
 
-    uint public balanceReceived;
+    uint balanceReceived;
     
     // total number of cars available
-    CarMaking.Car[] public cars;
+    CarMaking.Car[] cars;
 
     //cars array length getter
     function getNumberOfCars() public view returns(uint) {
         return cars.length;
     }
 
+    function getBalanceReceived() public view returns(uint){
+
+        return address(this).balance;
+    }
+
     // Function where users car add cars for renting in the rental app.
     function addCarForRenting(string memory model, address owner, uint year, string memory carLicense, uint price) public returns(uint) {
 
         //assining a variable count to hold the ID that is going to be given to the car.
-        uint count =  getNumberOfCars() + 1;
+        uint count =  getNumberOfCars();
 
         // adding new car to the cars's array, notice that address(0) is the default address. reference below:
         //https://ethereum.stackexchange.com/questions/40559/what-are-the-initial-zero-values-for-different-data-types-in-solidity
@@ -35,12 +40,12 @@ contract CarRental {
     function rentingACar(uint carID) public payable returns (bool){
 
         //Making sure the customer inserts a valid ID for this to work
-        require(carID >= 0 && carID < getNumberOfCars());
+        require(carID >= 0 && carID <= getNumberOfCars());
 
         // also checking if the user is paying the right amount.
-        if(msg.value != cars[carID].price)
+        if(msg.value != cars[carID].price){
             revert InvalidPrice(cars[carID].price);
-
+        }
         // with this line, we ensure that the chosen car can only be rented if available.
         require(cars[carID].isAvailable == true);
 
@@ -48,18 +53,26 @@ contract CarRental {
         cars[carID].customer = msg.sender;
         cars[carID].isAvailable = false;
 
+        balanceReceived = msg.value;
+
         return true;
     }
 
+     function withdrawMoney(uint carID) public {
+         require(cars[carID].owner == msg.sender);
+        address payable to = payable(msg.sender);
+        to.transfer(getBalanceReceived());
+    }
+
     // with this function the customer can see more details about the car that he/she inserted the id.
-    function getCarInfo(uint carID) public view returns (uint, string memory, address, address, uint, string memory, bool){
+    function getCarInfo(uint carID) public view returns (uint, string memory, address, address, uint, string memory, bool, uint){
 
         // again making sure the user inserts a valid carID.
         require(carID >= 0 && carID < getNumberOfCars());
 
         //find and assing car 
         CarMaking.Car memory chosenCar = cars[carID];
-        return (chosenCar.carID, chosenCar.model, chosenCar.owner, chosenCar.customer, chosenCar.year, chosenCar.carLicense, chosenCar.isAvailable);
+        return (chosenCar.carID, chosenCar.model, chosenCar.owner, chosenCar.customer, chosenCar.year, chosenCar.carLicense, chosenCar.isAvailable, chosenCar.price);
     } 
 
     //this function lets the car owner sets his car as returned.

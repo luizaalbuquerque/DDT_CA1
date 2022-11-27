@@ -56,66 +56,31 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "balanceReceived",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
 				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"name": "cars",
-				"outputs": [
 					{
 						"internalType": "uint256",
 						"name": "carID",
 						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "model",
-						"type": "string"
-					},
-					{
-						"internalType": "address",
-						"name": "customer",
-						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "owner",
-						"type": "address"
-					},
-					{
-						"internalType": "uint256",
-						"name": "year",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "carLicense",
-						"type": "string"
-					},
+					}
+				],
+				"name": "carReturned",
+				"outputs": [
 					{
 						"internalType": "bool",
-						"name": "isAvailable",
+						"name": "",
 						"type": "bool"
-					},
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getBalanceReceived",
+				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "price",
+						"name": "",
 						"type": "uint256"
 					}
 				],
@@ -166,6 +131,11 @@
 						"internalType": "bool",
 						"name": "",
 						"type": "bool"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
 					}
 				],
 				"stateMutability": "view",
@@ -201,6 +171,19 @@
 					}
 				],
 				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "carID",
+						"type": "uint256"
+					}
+				],
+				"name": "withdrawMoney",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -240,11 +223,11 @@
 			]
 		},
 		"contracts/CarRental.sol": {
-			"keccak256": "0x95d0fc7d57ceb9d239fb7c981b15b83d6714ab6b9c4f3c79920149644cad5f23",
+			"keccak256": "0xb5f98daaa49f22ba53b3642d37b45aaa53d90a5591f72d629708b3c506fafe6f",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://ccde769e4678e8cff2b61feb799b877cd34ac88fe1c07b87e0221a92711b1242",
-				"dweb:/ipfs/QmYMS7pSAYhAe3UsqsWRoR5kvR6zGDch7n11wrSYr51jtc"
+				"bzz-raw://f3cbad8e27ae83fe7fcdfcd577bebb2f24180cda51615bb1ab51674da327a5e0",
+				"dweb:/ipfs/QmZ2wf9qoLbvXKPueiSxbKGpCkYv67X8cjXvGCFan3bTB2"
 			]
 		}
 	},
