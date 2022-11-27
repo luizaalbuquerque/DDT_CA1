@@ -61,4 +61,19 @@ contract CarRental {
         CarMaking.Car memory chosenCar = cars[carID];
         return (chosenCar.carID, chosenCar.model, chosenCar.owner, chosenCar.customer, chosenCar.year, chosenCar.carLicense, chosenCar.isAvailable);
     } 
+
+    //this function lets the car owner sets his car as returned.
+    function carReturned(uint carID) public returns (bool){
+
+        CarMaking.Car storage rentedCar = cars[carID];
+
+        // makes it only accept this function to be called by the car's owner.
+        require(rentedCar.owner == msg.sender);
+
+        //seting availability back to true and the customer's address back to the default one.
+        rentedCar.isAvailable = true;
+        rentedCar.customer = address(0);
+        
+        return true;
+    }
 }
