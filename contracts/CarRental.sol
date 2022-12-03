@@ -2,24 +2,34 @@
 pragma solidity ^0.8.7;
 import {CarMaking} from "./CarMaking.sol";
 
+/*
+Gabriel Antoniolli 20202352
+Luiza Cavalcanti de Albuquerque Brayner 2020309
+Wallace Esteves 2020326
+Caio Machado 2020351
+
+*/
+
 contract CarRental {
 
+    // Gabriel
     uint balanceReceived;
     
-    // total number of cars available
+    // total number of cars available - Gabriel
     CarMaking.Car[] cars;
 
-    //cars array length getter
+    //cars array length getter - Gabriel
     function getNumberOfCars() public view returns(uint) {
         return cars.length;
     }
 
+    // show the amount received by the contract - Gabriel
     function getBalanceReceived() public view returns(uint){
 
         return address(this).balance;
     }
 
-    // Function where users car add cars for renting in the rental app.
+    // Function where users car add cars for renting in the rental app. - Luiza
     function addCarForRenting(string memory model, address owner, uint year, string memory carLicense, uint price) public returns(uint) {
 
         //assining a variable count to hold the ID that is going to be given to the car.
@@ -31,12 +41,14 @@ contract CarRental {
 
         return count;
     }
+
     //error to be called by next function
     error InvalidPrice(uint correctPrice);
 
     // function that customer calls to rent a car, the user only needs to insert the id of the car he is interested. and pay the value
     // if the value is different from the car's price, this logic was taken from this link here:
     // https://ethereum.stackexchange.com/questions/125092/payments-pre-set-value-in-solidity
+    // Caio / Gabriel
     function rentingACar(uint carID) public payable returns (bool){
 
         //Making sure the customer inserts a valid ID for this to work
@@ -57,7 +69,7 @@ contract CarRental {
 
         return true;
     }
-
+     // Wallace / Gabriel
      function withdrawMoney(uint carID) public {
          require(cars[carID].owner == msg.sender);
         address payable to = payable(msg.sender);
@@ -65,6 +77,7 @@ contract CarRental {
     }
 
     // with this function the customer can see more details about the car that he/she inserted the id.
+    // Caio
     function getCarInfo(uint carID) public view returns (uint, string memory, address, address, uint, string memory, bool, uint){
 
         // again making sure the user inserts a valid carID.
@@ -76,6 +89,7 @@ contract CarRental {
     } 
 
     //this function lets the car owner sets his car as returned.
+    // Wallace
     function carReturned(uint carID) public returns (bool){
 
         CarMaking.Car storage rentedCar = cars[carID];
